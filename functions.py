@@ -56,7 +56,7 @@ def build_objects(clear_data_table):
 def save_json(objects):
     with open('data/output.json', 'w', encoding='utf-8') as data:
         json.dump(objects, data, ensure_ascii=False, indent=4)
-    return 'output.json'
+    return 'data/output.json'
     
 
 def process_file(filepath):

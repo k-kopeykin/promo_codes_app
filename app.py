@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
 from functions import process_file, find_by_id
-from os import path
+from os import path, makedirs
 
-
+makedirs('uploads', exist_ok=True)
+makedirs('data', exist_ok=True)
 app = Flask(__name__)
 
 
@@ -12,7 +13,7 @@ def main():
         return render_template('index.html')
     else:
         file = request.files['file']
-        dir_name = 'C:/promo_codes/uploads/'
+        dir_name = 'uploads'
         file_name = file.filename
         filepath = path.join(dir_name, file_name)
         file.save(filepath)
