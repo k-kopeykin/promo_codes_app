@@ -45,11 +45,18 @@ def remove_empty_rows(without_first_col):
     return clear_data_table
 
 
+    
 def build_objects(clear_data_table):
     objects = []
     for row in clear_data_table:
         new_object = dict(zip(HEADERS, row))
         objects.append(new_object)
+    return objects
+
+def do_callable_phones(objects):
+    upd = '+'
+    for row in objects:
+        row['Телефон'] = upd + str(row['Телефон'])
     return objects
 
     
@@ -60,8 +67,13 @@ def save_json(objects):
     
 
 def process_file(filepath):
-    
-    return save_json(build_objects(remove_empty_rows(remove_first_col(load_file(filepath)))))
+    table = load_file(filepath)
+    removed_first_col = remove_first_col(table)
+    removed_empty_rows = remove_empty_rows(removed_first_col)
+    built_objects = build_objects(removed_empty_rows)
+    done_callable_phones = do_callable_phones(built_objects)
+    json_path = save_json(done_callable_phones)
+    return json_path
 
 
 def find_by_id(id):
