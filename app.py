@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
-from functions import process_file, find_by_id
-from os import path, makedirs
+from functions import process_file, find_by_id, merge_data
+from os import path, makedirs, remove
 
 makedirs('uploads', exist_ok=True)
 makedirs('data', exist_ok=True)
@@ -17,8 +17,9 @@ def main():
         file_name = file.filename
         filepath = path.join(dir_name, file_name)
         file.save(filepath)
-        process_file(filepath)
-        
+        done_table = process_file(filepath)
+        merge_data(done_table)
+        remove(filepath)
         return render_template('search.html')
 
 @app.route('/search', methods=['GET', 'POST'])

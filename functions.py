@@ -1,5 +1,6 @@
 import openpyxl
 import json
+from os import path
 
 HEADERS = [
         'id',
@@ -71,9 +72,24 @@ def process_file(filepath):
     removed_first_col = remove_first_col(table)
     removed_empty_rows = remove_empty_rows(removed_first_col)
     built_objects = build_objects(removed_empty_rows)
-    done_callable_phones = do_callable_phones(built_objects)
-    json_path = save_json(done_callable_phones)
-    return json_path
+    done_table = do_callable_phones(built_objects)
+    return done_table
+
+def merge_data(done_table):
+    if not path.exists('data/output.json'):
+        
+        return save_json(done_table)
+    else:
+        with open('data/output.json', 'r', encoding='utf-8') as f:
+            old_data = json.load(f)
+        old_numbers = {row['Телефон'] for row in old_data}
+        for row in done_table:
+            if row['Телефон'] not in old_numbers:
+                old_data.append(row)
+                old_numbers.add(row['Телефон'])
+        
+        return save_json(old_data)
+
 
 
 def find_by_id(id):
