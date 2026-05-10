@@ -1,25 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Клиент</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>{{user['id']}}</h1>
 
-    <p>{{user['Имя']}}</p>
+    <div class="container">
 
-    <p>{{user['Рацион']}}</p>
+        <div class="card">
 
-    <p>{{user['Интервал']}}</p>
+            <h1>{{ user['Имя'] }}</h1>
 
-    <p>{{user['Адрес']}}</p>
+            <div class="client-info">
 
-    <p><a href="tel:{{user['Телефон']}}">{{user['Телефон']}}</a></p>
+                <div class="info-block">
+                    <span class="label">ID</span>
+                    <p>{{ user['id'] }}</p>
+                </div>
 
-    <p>{{user['Комментарий']}}</p>
+                <div class="info-block">
+                    <span class="label">Рацион</span>
+                    <p>{{ user['Рацион'] }}</p>
+                </div>
 
-    
+                <div class="info-block">
+                    <span class="label">Интервал</span>
+                    <p>{{ user['Интервал'] }}</p>
+                </div>
+
+                <div class="info-block">
+                    <span class="label">Адрес</span>
+                    <p>{{ user['Адрес'] }}</p>
+                </div>
+
+                <div class="info-block">
+                    <span class="label">Телефон</span>
+
+                    <a
+                        href="tel:{{ user['Телефон'] }}"
+                        class="phone-link"
+                    >
+                        {{ user['Телефон'] }}
+                    </a>
+                </div>
+
+                <div class="info-block">
+                    <span class="label">Комментарий</span>
+                    <p>{{ user['Комментарий'] }}</p>
+                </div>
+
+            </div>
+
+            <a href="/search" class="button secondary">
+                Назад
+            </a>
+
+        </div>
+
+    </div>
+
 </body>
 </html>

@@ -18,9 +18,11 @@ def main():
         filepath = path.join(dir_name, file_name)
         file.save(filepath)
         done_table = process_file(filepath)
-        merge_data(done_table)
+        merged_data = merge_data(done_table)
         remove(filepath)
-        return render_template('search.html')
+        return render_template('search.html', 
+                            added_count=merged_data['added_count'],
+                            total_count=merged_data['total_count'])
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():

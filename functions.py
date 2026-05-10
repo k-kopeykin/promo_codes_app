@@ -78,17 +78,23 @@ def process_file(filepath):
 def merge_data(done_table):
     if not path.exists('data/output.json'):
         
-        return save_json(done_table)
+        return {'json_path': save_json(done_table),
+                 'total_count': len(done_table), 
+                 'added_count': len(done_table)}
     else:
         with open('data/output.json', 'r', encoding='utf-8') as f:
             old_data = json.load(f)
         old_numbers = {row['Телефон'] for row in old_data}
+        
+        added_count = 0
         for row in done_table:
             if row['Телефон'] not in old_numbers:
                 old_data.append(row)
                 old_numbers.add(row['Телефон'])
-        
-        return save_json(old_data)
+                added_count += 1
+        return  {'json_path': save_json(old_data),
+                 'total_count': len(old_data), 
+                 'added_count': added_count}
 
 
 

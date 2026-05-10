@@ -1,13 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поиск</title>
+    <title>Поиск клиента</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <form action="/search" method="post">
-        <input type="text" id="id" name="id" required>
-        <button type="submit">Искать</button>
-    </form>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Поиск клиента</h1>
+
+            {% if total_count is defined %}
+
+                <div class="status success">
+
+                    {% if added_count > 0 %}
+
+                        <p>
+                            Добавлено новых клиентов:
+                            <strong>{{ added_count }}</strong>
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            Новых клиентов не найдено
+                        </p>
+
+                    {% endif %}
+
+                    <p>
+                        Всего клиентов:
+                        <strong>{{ total_count }}</strong>
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+            <form action="/search" method="post">
+
+                <input
+                    type="text"
+                    id="id"
+                    name="id"
+                    placeholder="Введите ID"
+                    class="input"
+                    required
+                >
+
+                <button type="submit" class="button">
+                    Найти клиента
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
 </body>
+</html>

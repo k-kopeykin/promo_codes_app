@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #eef6ff;
+    color: #1f2937;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 420px;
+
+    background: white;
+
+    border-radius: 24px;
+
+    padding: 32px 24px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 80, 180, 0.08);
+}
+
+h1 {
+    font-size: 28px;
+    text-align: center;
+
+    margin-bottom: 16px;
+
+    color: #1e3a8a;
+}
+
+.subtitle {
+    text-align: center;
+
+    color: #6b7280;
+
+    margin-bottom: 28px;
+
+    line-height: 1.5;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.input,
+.input-file {
+    width: 100%;
+
+    padding: 18px;
+
+    border-radius: 16px;
+
+    border: 2px solid #cfe3ff;
+
+    font-size: 18px;
+
+    background: #f8fbff;
+}
+
+.input:focus {
+    outline: none;
+
+    border-color: #60a5fa;
+
+    background: white;
+}
+
+.button {
+    width: 100%;
+
+    padding: 18px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background: #3b82f6;
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+.secondary {
+    display: block;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    margin-top: 20px;
+
+    background: #dbeafe;
+
+    color: #1e40af;
+}
+
+.status {
+    padding: 18px;
+
+    border-radius: 16px;
+
+    margin-bottom: 24px;
+
+    line-height: 1.6;
+}
+
+.success {
+    background: #dbeafe;
+
+    color: #1e3a8a;
+}
+
+.client-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.info-block {
+    background: #f8fbff;
+
+    padding: 16px;
+
+    border-radius: 16px;
+}
+
+.label {
+    display: block;
+
+    font-size: 14px;
+
+    color: #6b7280;
+
+    margin-bottom: 6px;
+}
+
+.phone-link {
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-size: 20px;
+    font-weight: bold;
+}

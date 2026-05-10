@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Загрузка файла</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <input type="file" id="file" name="file" required>
-        <button type="submit">Загрузить</button>
-    </form>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Загрузка базы</h1>
+
+            <p class="subtitle">
+                Загрузите Excel файл с клиентами
+            </p>
+
+            <form action="/" method="post" enctype="multipart/form-data">
+
+                <input
+                    type="file"
+                    name="file"
+                    class="input-file"
+                    required
+                >
+
+                <button type="submit" class="button">
+                    Загрузить файл
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
 </body>
-</html>
