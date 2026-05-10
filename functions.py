@@ -84,13 +84,13 @@ def merge_data(done_table):
     else:
         with open('data/output.json', 'r', encoding='utf-8') as f:
             old_data = json.load(f)
-        old_numbers = {row['Телефон'] for row in old_data}
+        old_ids = {row['id'] for row in old_data}
         
         added_count = 0
         for row in done_table:
-            if row['Телефон'] not in old_numbers:
+            if row['id'] not in old_ids:
                 old_data.append(row)
-                old_numbers.add(row['Телефон'])
+                old_ids.add(row['id'])
                 added_count += 1
         return  {'json_path': save_json(old_data),
                  'total_count': len(old_data), 
