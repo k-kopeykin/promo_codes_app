@@ -35,7 +35,13 @@ def search():
             return render_template('search.html')
         else:
             return render_template('client.html', user=result)
-        
+@app.route('/reset')        
+def reset():
+    if path.exists('data/output.json'):
+        remove('data/output.json') 
+        return 'база удалена'
+    else:
+        return 'база отсутствует'
 
 if __name__ == '__main__':
     app.run()
