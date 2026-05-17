@@ -41,6 +41,21 @@ def search():
             raw_client = build_object(result)
             client = do_callable_phone(raw_client)
             return render_template('client.html', user=client)
+        
+@app.route('/test-db')
+def test_db():
+    connection = get_connect()
+
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT 1")
+
+    result = cursor.fetchone()
+
+    cursor.close()
+    connection.close()
+
+    return str(result)
 
 
 if __name__ == '__main__':
