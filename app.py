@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from excel_parsing import process_file
 from os import path, makedirs, remove
-from db import save_to_db, find_by_id
+from db import save_to_db, find_by_id, get_connect
 from presentation import do_callable_phone, build_object
 
 makedirs('uploads', exist_ok=True)
