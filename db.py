@@ -1,12 +1,13 @@
 import psycopg2
+import os
 
 def get_connect():
     connection = psycopg2.connect(
-            host="localhost",      # или IP контейнера
-            port="5432",           # порт PostgreSQL
-            database="postgres",   # имя базы данных
-            user="postgres",       # имя пользователя
-            password="123"  # пароль
+            host=os.getenv("DB_HOST"),      # или IP контейнера
+            port=os.getenv("DB_PORT"),           # порт PostgreSQL
+            database=os.getenv("DB_NAME"),   # имя базы данных
+            user=os.getenv("DB_USERNAME"),       # имя пользователя
+            password=os.getenv("DB_PASSWORD")  # пароль
         )
         
     print("Подключение к PostgreSQL успешно установлено!")
