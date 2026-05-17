@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
-from functions import process_file, find_by_id, merge_data
+from excel_parsing import process_file
 from os import path, makedirs, remove
+from db import save_to_db, find_by_id
+from presentation import do_callable_phone, build_object
 
 makedirs('uploads', exist_ok=True)
 makedirs('data', exist_ok=True)
@@ -18,11 +20,13 @@ def main():
         filepath = path.join(dir_name, file_name)
         file.save(filepath)
         done_table = process_file(filepath)
-        merged_data = merge_data(done_table)
+        result = save_to_db(done_table)
         remove(filepath)
-        return render_template('search.html', 
-                            added_count=merged_data['added_count'],
-                            total_count=merged_data['total_count'])
+        return render_template(
+    "search.html",
+    added_count=result["added_count"],
+    total_count=result["total_count"]
+)
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -34,14 +38,10 @@ def search():
         if not result:
             return render_template('search.html')
         else:
-            return render_template('client.html', user=result)
-@app.route('/reset')        
-def reset():
-    if path.exists('data/output.json'):
-        remove('data/output.json') 
-        return 'база удалена'
-    else:
-        return 'база отсутствует'
+            raw_client = build_object(result)
+            client = do_callable_phone(raw_client)
+            return render_template('client.html', user=client)
+
 
 if __name__ == '__main__':
     app.run()
