@@ -24,7 +24,7 @@ def main():
         remove(filepath)
         return render_template(
     "search.html",
-    added_count=result["added_count"]
+    added_count=result["added_count"],
     total_count=result["total_count"]
 )
 
