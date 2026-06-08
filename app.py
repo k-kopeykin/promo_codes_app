@@ -24,8 +24,8 @@ def main():
         remove(filepath)
         return render_template(
     "search.html",
-    added_count=result["added_count"],
-    total_count=result["total_count"]
+    added_count=result["added_count"]
+    
 )
 
 @app.route('/search', methods=['GET', 'POST'])
@@ -42,20 +42,7 @@ def search():
             client = do_callable_phone(raw_client)
             return render_template('client.html', user=client)
         
-@app.route('/test-db')
-def test_db():
-    connection = get_connect()
 
-    cursor = connection.cursor()
-
-    cursor.execute("SELECT 1")
-
-    result = cursor.fetchone()
-
-    cursor.close()
-    connection.close()
-
-    return str(result)
 
 
 if __name__ == '__main__':
