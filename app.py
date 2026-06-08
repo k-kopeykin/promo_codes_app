@@ -25,7 +25,7 @@ def main():
         return render_template(
     "search.html",
     added_count=result["added_count"]
-    
+    total_count=result["total_count"]
 )
 
 @app.route('/search', methods=['GET', 'POST'])
